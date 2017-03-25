@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundCornersView">
+        <attr name="round_corners" format="boolean" />
+        <attr name="smooth_corners" format="boolean" />
+
+        <attr name="round_corner_top_right" format="boolean" />
+        <attr name="round_corner_top_left" format="boolean" />
+        <attr name="round_corner_bottom_left" format="boolean" />
+        <attr name="round_corner_bottom_right" format="boolean" />
+
+        <attr name="smooth_corner_top_right" format="boolean" />
+        <attr name="smooth_corner_top_left" format="boolean" />
+        <attr name="smooth_corner_bottom_left" format="boolean" />
+        <attr name="smooth_corner_bottom_right" format="boolean" />
+
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornersEditText">
+        <attr name="error_color" format="color" />
+    </declare-styleable>
+
+</resources>

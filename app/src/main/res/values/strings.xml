@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Expensior</string>
+    <string name="title_report">Report</string>
+    <string name="title_expense">Expense</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="comming_soon">This feature will be comming soon, please hold on!</string>
+
+    <string name="expense_successfully_submitted">Your expense has been saved!</string>
+
+    <string name="title_activity_new_expense">New Expense</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="todays_expenses">Today\'s Expenses:</string>
+
+    <!-- Profile Settings -->
+    <string name="give_us_feedback">Give us feedback</string>
+    <string name="reset_data">Reset Data</string>
+    <string name="export_data">Export Data</string>
+    <string name="log_out">Logout</string>
+
+    <!-- New Expense -->
+    <string name="add_expense">Add Expense</string>
+    <string name="today">Today</string>
+    <string name="date_of_expense">Date:</string>
+    <string name="title_of_expense">Title:</string>
+    <string name="decription_of_expense">Decription:</string>
+    <string name="amount_of_expense">Amount:</string>
+    <string name="category_of_expense">Category:</string>
+    <string name="peridicity_of_expense">Periodicity:</string>
+    <string name="title_activity_expense_detail">ExpenseDetail</string>
+
+</resources>

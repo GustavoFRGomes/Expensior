@@ -9,7 +9,14 @@
     <color name="white">#FFFFFF</color>
 
     <color name="medium_blue">#1D49E8</color>
-    <color name="navy_blue">#000080</color>
+    <color name="navy_blue">#000080</color>77
+
+    <color name="dialog_dimmed_background">#3302A8F3</color>
+    <color name="dialog_negative_button">#D62704</color>
+    <color name="dialog_positive_button">#0371ED</color>
+    <color name="dialog_title">#E05D00</color>
+
+    <color name="background_grey">#E7E8ED</color>
 
     <color name="background_color">@color/white</color>
 </resources>

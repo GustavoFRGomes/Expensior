@@ -13,10 +13,17 @@
 
     <string name="todays_expenses">Today\'s Expenses:</string>
 
+    <!-- Reset Data Dialog -->
+    <string name="warning">Warning:</string>
+    <string name="are_you_sure_text">Are you sure you want to wipe all the expense data from this device? This can\'t be reversed afterwards.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <!-- Profile Settings -->
     <string name="give_us_feedback">Give us feedback</string>
     <string name="reset_data">Reset Data</string>
     <string name="export_data">Export Data</string>
+    <string name="import_data">Import Data</string>
     <string name="log_out">Logout</string>
 
     <!-- New Expense -->

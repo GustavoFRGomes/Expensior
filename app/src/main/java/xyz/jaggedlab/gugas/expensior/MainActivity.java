@@ -20,6 +20,7 @@ import xyz.jaggedlab.gugas.expensior.sections.ExpenseSectionFragment;
 import xyz.jaggedlab.gugas.expensior.sections.ProfileSectionFragment;
 import xyz.jaggedlab.gugas.expensior.sections.ReportSectionFragment;
 import xyz.jaggedlab.gugas.expensior.sections.new_expenses.NewExpenseActivity;
+import xyz.jaggedlab.gugas.expensior.utils.DimensionUtils;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, FloatingActionButton.OnClickListener {
 
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         this.sectionViewPager.setOffscreenPageLimit(NUM_PAGES);
         this.sectionViewPager.addOnPageChangeListener(this);
         this.sectionViewPager.setAdapter(new ScreenSlidePagerAdapter(this.getSupportFragmentManager()));
+        this.sectionViewPager.setPageMargin(DimensionUtils.convertFromDpToPixel(this, 8));
+
         this.navigation = (BottomNavigationView) findViewById(R.id.navigation);
         this.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 

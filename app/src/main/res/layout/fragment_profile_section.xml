@@ -2,16 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/white"
     tools:context="xyz.jaggedlab.gugas.expensior.sections.ProfileSectionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/profile_section_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/comming_soon"
-        style="@style/TextViewListItem.Light" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

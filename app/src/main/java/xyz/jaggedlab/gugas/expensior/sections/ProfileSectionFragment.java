@@ -29,7 +29,7 @@ public class ProfileSectionFragment extends Fragment implements IOnProfileItemCl
         // Required empty public constructor
     }
 
-    public static ProfileSectionFragment newInstance(String param1, String param2) {
+    public static ProfileSectionFragment newInstance() {
         ProfileSectionFragment fragment = new ProfileSectionFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);

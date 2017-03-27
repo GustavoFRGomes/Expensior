@@ -11,7 +11,10 @@
     <string name="title_activity_new_expense">New Expense</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Expense Section -->
     <string name="todays_expenses">Today\'s Expenses:</string>
+    <string name="total_of_expenses">(Total: %1$s%2$s )</string>
+    <string name="expended_amount">%1$s%2$s</string>
 
     <!-- Reset Data Dialog -->
     <string name="warning">Warning:</string>
@@ -19,7 +22,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <!-- Profile Settings -->
+    <!-- Profile Section -->
     <string name="give_us_feedback">Give us feedback</string>
     <string name="reset_data">Reset Data</string>
     <string name="export_data">Export Data</string>

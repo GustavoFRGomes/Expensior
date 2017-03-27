@@ -157,7 +157,12 @@ public class NewExpenseActivityFragment extends Fragment implements LinearLayout
             this.realmInstance.beginTransaction();
 
             this.realmInstance = Realm.getDefaultInstance();
-            int lastId = this.realmInstance.where(Expense.class).max("id").intValue();
+            Number maximumNumber = this.realmInstance.where(Expense.class).max("id");
+
+            int lastId = 0;
+            if (maximumNumber != null) {
+                lastId = maximumNumber.intValue();
+            }
 
             Expense newExpense = new Expense(lastId + 1, title, description, category, -1, periodicity.getNumberOfDays(), amount, Currency.EURO.getCurrencySymbol(), selectedDate.getTime());
 

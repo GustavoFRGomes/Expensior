@@ -1,5 +1,6 @@
 package xyz.jaggedlab.gugas.expensior.sections.expense_section;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 import xyz.jaggedlab.gugas.expensior.R;
 import xyz.jaggedlab.gugas.expensior.model.Category;
+import xyz.jaggedlab.gugas.expensior.model.Currency;
 import xyz.jaggedlab.gugas.expensior.model.Expense;
 
 /**
@@ -24,6 +26,9 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
     private ArrayList<Category> categories; // For the Header Graphic
     private ArrayList<Expense> expenses; // For the ret of the list.
 
+    private double totalAmountOfTheExpenses = 0.0;
+    private String currencyOfExpenses;
+
     private IOnExpenseItemClickListener onExpenseItemClickListener;
 
     public ExpenseRecyclerViewAdapter(Context context,
@@ -34,10 +39,15 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
         this.categories = categoryList;
         this.expenses = expenseList;
         this.onExpenseItemClickListener = onExpenseItemClickListener;
+        this.totalAmountOfTheExpenses = this.calculateTotalAmountOfExpenses(expenseList);
+        this.getCurrencyOfExpenses(); // Gets the symbol of the expenses.
+
     }
 
     public void updateExpenseList(ArrayList<Expense> newExpenseList) {
         this.expenses = newExpenseList;
+        this.totalAmountOfTheExpenses = this.calculateTotalAmountOfExpenses(newExpenseList);
+        this.getCurrencyOfExpenses();
         this.notifyDataSetChanged();
     }
 
@@ -79,14 +89,26 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
         else if (viewType == ExpenseRecyclerViewType.TODAY_TITLE.getIntType()) {
             // TODAY TITLE in BLUE and Separator on Top
             ((TodayTitleViewHolder)holder).todayTitle.setText(this.context.getString(R.string.todays_expenses));
+
+            String totalExpenseAmount = this.context.getString(R.string.total_of_expenses,
+                    Double.toString(this.totalAmountOfTheExpenses),
+                    this.currencyOfExpenses);
+            ((TodayTitleViewHolder) holder).totalAmountOfExpenses.setText(totalExpenseAmount);
         }
         else { // ViewType is ITEM
-            ((ItemViewHolder)holder).expenseTitle.setText(this.expenses
-                    .get(this.getRealPosition(position)).getTitle());
-            // FIXME: This might not be needed, the problem is when the list is smaller than the screen height.
-            /*if (this.isItLastExpenseElement(position)) {
-                ((ItemViewHolder)holder).separatorLine.setVisibility(View.GONE);
-            }*/
+            Expense temporaryExpense = this.expenses.get(this.getRealPosition(position));
+
+            ItemViewHolder itemViewHolder = ((ItemViewHolder) holder);
+            itemViewHolder.expenseTitle.setText(temporaryExpense.getTitle());
+            itemViewHolder.categoryTitle.setVisibility(View.VISIBLE);
+            itemViewHolder.categoryTitle.setText(temporaryExpense.getCategory());
+
+            String expenseAmount = this.context.getString(R.string.expended_amount,
+                    Double.toString(temporaryExpense.getAmount()),
+                    this.currencyOfExpenses);
+
+            itemViewHolder.priceTitle.setVisibility(View.VISIBLE);
+            itemViewHolder.priceTitle.setText(expenseAmount);
         }
     }
 
@@ -122,6 +144,27 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private boolean isItLastExpenseElement(int position) {
         return this.getRealPosition(position) == (this.expenses.size() -1);
+    }
+
+    private double calculateTotalAmountOfExpenses(ArrayList<Expense> expenses) {
+        double sumOfAllExpenses = 0.0;
+        for (Expense expense: expenses) {
+            sumOfAllExpenses += expense.getAmount();
+        }
+
+
+
+        return sumOfAllExpenses;
+    }
+
+    private void getCurrencyOfExpenses() {
+        if (this.expenses != null && this.expenses.size() > 0) {
+            this.currencyOfExpenses = this.expenses.get(0).getCurrency();
+        }
+        else
+        {
+            this.currencyOfExpenses = Currency.EURO.getCurrencySymbol();
+        }
     }
 
     @Override
@@ -167,21 +210,27 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public static class TodayTitleViewHolder extends RecyclerView.ViewHolder {
         public TextView todayTitle;
+        public TextView totalAmountOfExpenses;
 
         // TODO: Make another constructor and let the user customize the title color.
         public TodayTitleViewHolder(View itemView) {
             super(itemView);
             this.todayTitle = ((TextView) itemView.findViewById(R.id.todays_title));
+            this.totalAmountOfExpenses = ((TextView) itemView.findViewById(R.id.total_amount_of_expenses));
         }
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView expenseTitle;
+        public TextView categoryTitle;
+        public TextView priceTitle;
         public View separatorLine;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             this.expenseTitle = (TextView) itemView.findViewById(R.id.regular_expense_title);
+            this.categoryTitle = ((TextView) itemView.findViewById(R.id.regular_expense_category));
+            this.priceTitle = ((TextView) itemView.findViewById(R.id.regular_expense_price));
             this.separatorLine = itemView.findViewById(R.id.item_separator_line);
         }
     }

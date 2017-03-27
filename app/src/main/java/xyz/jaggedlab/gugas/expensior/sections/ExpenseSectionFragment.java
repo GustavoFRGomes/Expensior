@@ -40,7 +40,7 @@ public class ExpenseSectionFragment extends Fragment implements IOnExpenseItemCl
         // Required empty public constructor
     }
 
-    public static ExpenseSectionFragment newInstance(String param1, String param2) {
+    public static ExpenseSectionFragment newInstance() {
         ExpenseSectionFragment fragment = new ExpenseSectionFragment();
         return fragment;
     }
@@ -108,7 +108,6 @@ public class ExpenseSectionFragment extends Fragment implements IOnExpenseItemCl
             return;
         }
 
-        //if (data == null) {
         this.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -117,7 +116,6 @@ public class ExpenseSectionFragment extends Fragment implements IOnExpenseItemCl
                         .updateExpenseList(ExpenseSectionFragment.this.expenses);
             }
         });
-        //}
     }
 
     private void refreshExpenseList() {

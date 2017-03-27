@@ -139,17 +139,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = ProfileSectionFragment.newInstance("Profile", "Section");;
+            Fragment fragment;
 
             switch (position) {
                 case 0: // Report Section
-                    fragment = ReportSectionFragment.newInstance("Report", "Section");
+                    fragment = ReportSectionFragment.newInstance();
                     break;
                 case 1: // Expense Section
-                    fragment = ExpenseSectionFragment.newInstance("Expense", "Section");
+                    fragment = ExpenseSectionFragment.newInstance();
                     break;
+                default:
                 case 2: // Profile Section
-                    fragment =  ProfileSectionFragment.newInstance("Profile", "Section");
+                    fragment =  ProfileSectionFragment.newInstance();
                     break;
             }
 

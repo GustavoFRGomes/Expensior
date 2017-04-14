@@ -8,15 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hookedonplay.decoviewlib.DecoView;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import xyz.jaggedlab.gugas.expensior.R;
 import xyz.jaggedlab.gugas.expensior.model.Category;
 import xyz.jaggedlab.gugas.expensior.model.Currency;
 import xyz.jaggedlab.gugas.expensior.model.Expense;
+import xyz.jaggedlab.gugas.expensior.utils.DateUtils;
+
+import static android.view.View.GONE;
 
 /**
- * Created by User on 24/03/2017.
+ * Created by Gustavo Gomes on 24/03/2017.
  */
 
 public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
@@ -202,9 +208,55 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
         }
     }
 
+
+    private void calculateCategoryAmountOfExpenses() {
+        int categoryIndex = 0;
+
+        for (Expense expense: this.expenses) {
+            categoryIndex = this.getCategoryIndex(expense.getCategoryId());
+            if (categoryIndex != -1) {
+                this.categories.get(categoryIndex).setTotalAmountOfExpenses(
+                        this.categories.get(categoryIndex).getTotalAmountOfExpenses() + expense.getAmount());
+            }
+        }
+    }
+
+    private void resetCategoryAmountOfExpenses() {
+        for (Category category: this.categories) {
+            category.setTotalAmountOfExpenses(0.0);
+        }
+    }
+
+    public void redrawGraphic() {
+        // TODO: Make up all the logic for the redrawing of the graphic.
+    }
+
+    private int getCategoryIndex(int categoryId) {
+        for (int index = 0; index < this.categories.size(); index++) {
+            if (this.categories.get(index).getCategoryId() == categoryId) {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
     public static class GraphicHeaderViewHolder extends RecyclerView.ViewHolder {
+        private DecoView expenseGraphicRepresentation;
+        private TextView todayDateLabel;
+
         public GraphicHeaderViewHolder(View itemView) {
             super(itemView);
+
+            this.expenseGraphicRepresentation = ((DecoView) itemView.findViewById(R.id.todays_expense_graphic));
+            this.expenseGraphicRepresentation.setVisibility(GONE);
+
+            this.todayDateLabel = ((TextView) itemView.findViewById(R.id.todays_expense_date));
+            this.todayDateLabel.setText(this.getTodaysDate());
+        }
+
+        private String getTodaysDate() {
+            return DateUtils.formatDate(new Date());
         }
     }
 

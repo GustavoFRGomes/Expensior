@@ -17,7 +17,6 @@ public class Expense extends RealmObject {
     private String title;
     private String description;
 
-    @Ignore
     private String category;
 
     private int categoryId;

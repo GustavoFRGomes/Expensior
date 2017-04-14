@@ -21,4 +21,8 @@
         <attr name="error_color" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="RoundedCorneredTextView">
+        <attr name="border_color" format="reference" />
+    </declare-styleable>
+
 </resources>

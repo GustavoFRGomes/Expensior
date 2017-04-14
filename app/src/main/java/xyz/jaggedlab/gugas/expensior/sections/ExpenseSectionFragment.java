@@ -48,26 +48,16 @@ public class ExpenseSectionFragment extends Fragment implements IOnExpenseItemCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_expense_section, container, false);
 
-        //Expense testExpense = new Expense(1, "Title1", "", "", 10, 10, 10.0, "$", (new Date().getTime()));
-        //Expense testExpense2 = new Expense(1, "Title2", "", "", 10, 10, 10.0, "$", (new Date().getTime()));
-        //Category categoryTest = new Category(1, "", 0, 0.0);
+        View rootView = inflater.inflate(R.layout.fragment_expense_section, container, false);
 
         this.expenses = new ArrayList<>();
         this.categories = new ArrayList<>();
 
-        //expenses.add(testExpense);
-        //expenses.add(testExpense2);
-
-        //categories.add(categoryTest);
         this.refreshExpenseList();
 
         this.expenseRecyclerView = ((RecyclerView) rootView.findViewById(R.id.expense_fragment_recycler_view));
-
         this.expenseRecyclerView.setHasFixedSize(true);
-
         this.expenseRecyclerView.setAdapter(new ExpenseRecyclerViewAdapter(this.getContext(),
                 this.expenses,
                 this.categories,
@@ -89,8 +79,6 @@ public class ExpenseSectionFragment extends Fragment implements IOnExpenseItemCl
 
     @Override
     public void onItemClickedListener(View itemView, Expense expense) {
-        //Toast.makeText(this.getContext(), expense.getTitle(), Toast.LENGTH_LONG).show();
-
         Intent intent = new Intent(this.getActivity(), ExpenseDetail.class);
 
         intent.putExtras(ExpenseUtils.getBundleFromExpense(expense));

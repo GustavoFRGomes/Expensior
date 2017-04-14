@@ -6,7 +6,13 @@
     android:padding="@dimen/activity_horizontal_margin">
 
     <TextView
-        android:text="HEADER HERE"
+        android:id="@+id/todays_expense_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextViewTitles"/>
+
+    <com.hookedonplay.decoviewlib.DecoView
+        android:id="@+id/todays_expense_graphic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

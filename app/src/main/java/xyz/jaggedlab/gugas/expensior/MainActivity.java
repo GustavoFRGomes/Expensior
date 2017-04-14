@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private BottomNavigationView navigation;
     private FloatingActionButton newExpenseFab;
 
-    static final int NUM_PAGES = 3;
+    static final int NUM_PAGES = 3; // representing the Reports, Expenses and Profile sections
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

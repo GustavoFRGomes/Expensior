@@ -43,4 +43,23 @@ public class RoundCorneredBorderTextView extends android.support.v7.widget.AppCo
 
         this.setTextAlignment(TEXT_ALIGNMENT_CENTER);
     }
+
+    public void changeColor(int colorResourceId) {
+        this.changeColor(colorResourceId, colorResourceId);
+    }
+
+    public void changeColor(int borderResourceColorId, int textResourceColorId) {
+        int borderColorInt = ContextCompat.getColor(this.getContext(), borderResourceColorId);
+        int textColorInt = ((borderResourceColorId == textResourceColorId) ?
+                borderColorInt : ContextCompat.getColor(this.getContext(), textResourceColorId));
+
+        this.getBackground().setColorFilter(borderColorInt, PorterDuff.Mode.SRC_ATOP);
+        this.setTextColor(textColorInt);
+
+    }
+
+    public void changeBorderlineColorFromColorId(int colorResourceId) {
+        int borderColorInt = ContextCompat.getColor(this.getContext(), colorResourceId);
+        this.getBackground().setColorFilter(borderColorInt, PorterDuff.Mode.SRC_ATOP);
+    }
 }

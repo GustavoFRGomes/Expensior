@@ -26,7 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_weight=".25"
             android:layout_gravity="center_vertical"
+            android:paddingStart="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
             custom:border_color="@color/black"
+            android:textSize="14sp"
             style="@style/TextViewListItem" />
 
         <TextView
@@ -35,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".25"
             android:layout_gravity="end|center_vertical"
-            android:text=""
+            android:textAlignment="center"
             android:drawableEnd="@drawable/ic_last_page_black_24dp"
             style="@style/TextViewListItem"
             android:paddingEnd="@dimen/margin_small" />

@@ -17,6 +17,7 @@ import xyz.jaggedlab.gugas.expensior.R;
 import xyz.jaggedlab.gugas.expensior.model.Category;
 import xyz.jaggedlab.gugas.expensior.model.Currency;
 import xyz.jaggedlab.gugas.expensior.model.Expense;
+import xyz.jaggedlab.gugas.expensior.ui_components.RoundCorneredBorderTextView;
 import xyz.jaggedlab.gugas.expensior.utils.DateUtils;
 
 import static android.view.View.GONE;
@@ -108,6 +109,7 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
             itemViewHolder.expenseTitle.setText(temporaryExpense.getTitle());
             itemViewHolder.categoryTitle.setVisibility(View.VISIBLE);
             itemViewHolder.categoryTitle.setText(temporaryExpense.getCategory());
+            itemViewHolder.categoryTitle.changeColor(R.color.colorAccent);
 
             String expenseAmount = this.context.getString(R.string.expended_amount,
                     Double.toString(temporaryExpense.getAmount()),
@@ -274,14 +276,15 @@ public class ExpenseRecyclerViewAdapter extends RecyclerView.Adapter {
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView expenseTitle;
-        public TextView categoryTitle;
+        public RoundCorneredBorderTextView categoryTitle;
         public TextView priceTitle;
         public View separatorLine;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             this.expenseTitle = (TextView) itemView.findViewById(R.id.regular_expense_title);
-            this.categoryTitle = ((TextView) itemView.findViewById(R.id.regular_expense_category));
+            this.categoryTitle = ((RoundCorneredBorderTextView) itemView.findViewById(R.id.regular_expense_category));
+
             this.priceTitle = ((TextView) itemView.findViewById(R.id.regular_expense_price));
             this.separatorLine = itemView.findViewById(R.id.item_separator_line);
         }

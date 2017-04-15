@@ -27,9 +27,11 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import xyz.jaggedlab.gugas.expensior.R;
+import xyz.jaggedlab.gugas.expensior.model.Category;
 import xyz.jaggedlab.gugas.expensior.model.Currency;
 import xyz.jaggedlab.gugas.expensior.model.Expense;
 import xyz.jaggedlab.gugas.expensior.model.Periodicity;
+import xyz.jaggedlab.gugas.expensior.sections.new_expenses.category.CategoryPickerDialog;
 import xyz.jaggedlab.gugas.expensior.ui_components.BlueSpinnerAdapter;
 import xyz.jaggedlab.gugas.expensior.ui_components.DatePickerDialogFragment;
 import xyz.jaggedlab.gugas.expensior.utils.DateUtils;
@@ -37,7 +39,7 @@ import xyz.jaggedlab.gugas.expensior.utils.DateUtils;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class NewExpenseActivityFragment extends Fragment implements LinearLayout.OnClickListener {
+public class NewExpenseActivityFragment extends Fragment implements LinearLayout.OnClickListener, IOnCategorySelectedCallback {
 
     private EditText titleField;
     private EditText amountField;
@@ -57,6 +59,7 @@ public class NewExpenseActivityFragment extends Fragment implements LinearLayout
     private Date selectedDate = new Date();
 
     private Realm realmInstance;
+    private Category selectedCategory;
 
     public NewExpenseActivityFragment() {
     }
@@ -78,7 +81,10 @@ public class NewExpenseActivityFragment extends Fragment implements LinearLayout
 
         this.titleField = ((EditText)rootView.findViewById(R.id.title_of_expense_field));
         this.amountField = ((EditText)rootView.findViewById(R.id.amount_of_expense_field));
+
         this.categoryField = ((EditText) rootView.findViewById(R.id.category_of_expense_field));
+        this.categoryField.setOnClickListener(this);
+
         this.dateField = ((EditText) rootView.findViewById(R.id.date_of_expense_field));
         this.dateField.setFocusable(false);
         this.dateField.setOnClickListener(this);
@@ -230,10 +236,23 @@ public class NewExpenseActivityFragment extends Fragment implements LinearLayout
         if (view.getId() == this.dateField.getId()) {
             this.onExpenseDateClicked();
         }
-
         // Add Expense Button
-        if (view.getId() == this.addExpenseLabel.getId()) {
+        else if (view.getId() == this.addExpenseLabel.getId()) {
             this.onAddExpenseClicked();
         }
+        // Category TextField
+        else if (view.getId() == this.categoryField.getId()) {
+            this.showCategoryChooserDialog();
+        }
+    }
+
+    private void showCategoryChooserDialog() {
+        CategoryPickerDialog.newInstance(this).show(this.getFragmentManager());
+    }
+
+    @Override
+    public void onCategorySelected(Category category) {
+        this.categoryField.setText(category.geteCategoryName());
+        this.selectedCategory = category;
     }
 }

@@ -40,4 +40,12 @@
     <string name="peridicity_of_expense">Periodicity:</string>
     <string name="title_activity_expense_detail">ExpenseDetail</string>
 
+    <!-- Category Picker Dialog -->
+    <string name="category_popup_title">Category Picking</string>
+    <string name="add_category_title">Add a Category</string>
+    <string name="please_choose_a_category">Please choose one of the following categories:</string>
+    <string name="new_category_name">Name:</string>
+    <string name="new_category_color">Color:</string>
+    <string name="new_category_submit">Submit</string>
+
 </resources>
